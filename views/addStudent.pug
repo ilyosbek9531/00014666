@@ -9,7 +9,9 @@ block content
                     .student-box 
                         input(type="text" name="student_name" value=student_name)
                         label(for="student_name") Student Name 
-                        if required
+                        if student_name_string
+                            .error student name contain only string
+                        else if required
                             .error student name is required
                     .student-box 
                         input(type="number" name="student_id" value=student_id readonly=student_id)
@@ -18,7 +20,7 @@ block content
                         if required
                             .error student id is must be 8 character
                     .student-box
-                        input(type="file" name="student_image")
+                        input(type="file" name="student_image" files="ddd")
                         label(for="student_image") Student Image
                         if required
                             .optional student image is optional

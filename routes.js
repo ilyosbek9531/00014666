@@ -43,51 +43,55 @@ router.post("/addStudent", upload.single("student_image"), (req, res) => {
   const { student_name, student_id, student_birth, student_gender } = req.body;
   const student_image = req?.file?.filename;
   if (student_name && student_id.length == 8 && student_birth) {
-    fs.readFile("./data/students.json", (err, data) => {
-      if (err) throw err;
-      const students = JSON.parse(data);
-      const singleStudentId = students.find(
-        (student) => student.student_id == student_id
-      )?.id;
-
-      if (singleStudentId) {
-        const studentById = students.filter(
-          (student) => student.id != singleStudentId
+    if (Boolean(student_name?.match(/^[A-Za-z\s]*$/))) {
+      fs.readFile("./data/students.json", (err, data) => {
+        if (err) throw err;
+        const students = JSON.parse(data);
+        const singleStudentId = students.find(
+          (student) => student.student_id == student_id
         );
-        studentById.push({
-          id: singleStudentId,
-          student_name,
-          student_id,
-          student_birth,
-          image: student_image,
-          student_gender,
-        });
-        const newStudents = JSON.stringify(studentById);
-        fs.writeFile("./data/students.json", newStudents, (err) => {
-          if (err) throw err;
-          res.render("addStudent", {
-            update:
-              "There is a student with this ID. Do you want to update information?",
+
+        if (singleStudentId?.id) {
+          const studentById = students.filter(
+            (student) => student.id != singleStudentId?.id
+          );
+          studentById.unshift({
+            id: singleStudentId?.id,
+            student_name,
+            student_id,
+            student_birth,
+            image: student_image ? student_image : singleStudentId.image,
+            student_gender,
           });
-        });
-      } else {
-        students.push({
-          id: uuid(),
-          student_name,
-          student_id,
-          student_birth,
-          image: student_image,
-          student_gender,
-        });
-        const newStudents = JSON.stringify(students);
-        fs.writeFile("./data/students.json", newStudents, (err) => {
-          if (err) throw err;
-          res.render("addStudent", {
-            added: "successfully added",
+          const newStudents = JSON.stringify(studentById);
+          fs.writeFile("./data/students.json", newStudents, (err) => {
+            if (err) throw err;
+            res.render("addStudent", {
+              update:
+                "There is a student with this ID. Do you want to update information?",
+            });
           });
-        });
-      }
-    });
+        } else {
+          students.unshift({
+            id: uuid(),
+            student_name,
+            student_id,
+            student_birth,
+            image: student_image,
+            student_gender,
+          });
+          const newStudents = JSON.stringify(students);
+          fs.writeFile("./data/students.json", newStudents, (err) => {
+            if (err) throw err;
+            res.render("addStudent", {
+              added: "successfully added",
+            });
+          });
+        }
+      });
+    } else {
+      res.render("addStudent", { required: true, student_name_string: true });
+    }
   } else {
     res.render("addStudent", { required: true });
   }
