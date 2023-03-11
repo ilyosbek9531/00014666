@@ -1,0 +1,45 @@
+extends index.pug
+
+block content
+    main
+        .wrap-create__box
+            .create-box 
+                h2 Fill the form 
+                form(action="/addStudent" method="POST" enctype="multipart/form-data") 
+                    .student-box 
+                        input(type="text" name="student_name")
+                        label(for="student_name") Student Name 
+                        if required
+                            .error student name is required
+                    .student-box 
+                        input(type="password" name="student_id")
+                        label(for="student_id") Student Id  
+                        if required
+                            .error student id is must be 8 character
+                    .student-box
+                        input(type="file" name="student_image")
+                        label(for="student_image") Student Image
+                        if required
+                            .optional student image is optional
+                    .student-box 
+                        input(type="date" name="student_birth")
+                        label(for="student_birth") Student Birth
+                        if required
+                            .error student id is required
+                    .student-box 
+                        select(name="student_gender") 
+                            option(value="male")  Male 
+                            option(value="female")  Female 
+                    button(type="submit") Submit 
+                        span 
+                        span 
+                        span 
+                        span 
+    if added 
+        .modal
+            .content #{added}
+                button.close(data-modal="successfully added") Go to students page
+    if alreadyHasStudentId 
+        .modal
+            .content #{alreadyHasStudentId}
+                button.close(data-modal='already added') Close

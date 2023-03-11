@@ -1,0 +1,8 @@
+extends index.pug
+
+block content
+    main
+        each item in data 
+            .item-wrapper 
+                a(href=`/all-information/${item.id}`) #{item.title}
+                p #{item.description}

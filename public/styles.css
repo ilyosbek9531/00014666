@@ -1,3 +1,373 @@
-h1 {
-  color: red;
+:root {
+  --text-color: #182632;
+  --nav-footer-color: #e7ede5;
+  --hover-color: #d3dbd1;
+  --main-color: #3cc0cf;
+}
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "inter", "sans-serif";
+  text-decoration: none;
+  color: var(--text-color);
+}
+
+main {
+  width: 1100px;
+  min-height: calc(100vh - 242.5px);
+  padding: 30px 0;
+  margin: 0 auto;
+}
+
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0;
+  box-shadow: 1px 8px 11px 0px rgba(34, 60, 80, 0.2);
+  background: var(--nav-footer-color);
+  position: sticky;
+  top: 0;
+}
+
+.navbar__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1100px;
+}
+
+.navbar__container .logo,
+.footer__container .logo {
+  text-transform: uppercase;
+  font-size: 2rem;
+  font-weight: 800;
+  background: -webkit-linear-gradient(#46aaaf, #28292a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.navbar__container .logo span,
+.footer__container .logo span {
+  font-size: 0.8rem;
+  font-weight: 400;
+  background: -webkit-linear-gradient(#1e1e1e, #e3e4e7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.nav,
+.contact {
+  display: flex;
+  gap: 2rem;
+  font-size: 1.2rem;
+}
+
+.nav a,
+.contact a {
+  position: relative;
+  color: var(--text-color);
+}
+.navbar__container .nav a::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  background: var(--text-color);
+  transition: width 0.3s;
+  position: absolute;
+  top: 150%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.navbar__container .nav a:hover::after {
+  width: 50% !important;
+}
+
+/* footer */
+.footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--nav-footer-color);
+  padding: 15px 0;
+}
+
+.footer__container {
+  width: 1100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__container .nav,
+.footer__container .contact {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.footer__container .nav h2,
+.footer__container .contact h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* home */
+.main__title {
+  width: 70%;
+  margin-top: 50px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+.main__button {
+  font-size: 1.5rem;
+  border-radius: 12px;
+  background-color: var(--nav-footer-color);
+  padding: 10px 15px;
+  height: 50px;
+}
+.main__button:hover {
+  background-color: var(--hover-color);
+  transition: all 0.6s ease;
+}
+.main__button span {
+  font-size: 2rem;
+  margin-left: 10px;
+}
+/* create */
+.wrap-create__box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+.create-box {
+  width: 60%;
+  padding: 40px;
+  background: rgb(30, 31, 31);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0, 0, 0, 0.6);
+  border-radius: 10px;
+}
+
+.create-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: #fff;
+  text-align: center;
+}
+
+.create-box .student-box {
+  position: relative;
+}
+
+.create-box .student-box input {
+  width: 100%;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  margin-bottom: 30px;
+  border: none;
+  border-bottom: 1px solid #fff;
+  outline: none;
+  background: transparent;
+}
+.create-box .student-box label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 10px 0;
+  font-size: 16px;
+  color: #fff;
+  pointer-events: none;
+  transition: 0.5s;
+}
+
+.create-box .student-box .error {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  color: #ca3535;
+  pointer-events: none;
+  padding: 10px 0;
+  top: -20px;
+}
+.create-box .student-box .optional {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 12px;
+  color: #37ca35;
+  pointer-events: none;
+  padding: 10px 0;
+  top: -20px;
+}
+
+.create-box .student-box input:focus ~ label,
+.create-box .student-box input:valid ~ label {
+  top: -20px;
+  left: 0;
+  color: var(--main-color);
+  font-size: 12px;
+}
+
+.create-box form button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 20px;
+  color: var(--main-color);
+  font-size: 16px;
+  text-decoration: none;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: 0.5s;
+  margin-top: 40px;
+  letter-spacing: 4px;
+  border: none;
+  outline: none;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.create-box button:hover {
+  background: var(--main-color);
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 0 5px var(--main-color), 0 0 25px var(--main-color),
+    0 0 50px var(--main-color), 0 0 100px var(--main-color);
+}
+
+.create-box button span {
+  position: absolute;
+  display: block;
+}
+
+.create-box button span:nth-child(1) {
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--main-color));
+  animation: btn-anim1 1s linear infinite;
+}
+input[type="date"] {
+  color-scheme: dark;
+}
+
+select {
+  width: 100%;
+  height: 20px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+}
+
+@keyframes btn-anim1 {
+  0% {
+    left: -100%;
+  }
+  50%,
+  100% {
+    left: 100%;
+  }
+}
+
+.create-box button span:nth-child(2) {
+  top: -100%;
+  right: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(180deg, transparent, var(--main-color));
+  animation: btn-anim2 1s linear infinite;
+  animation-delay: 0.25s;
+}
+
+@keyframes btn-anim2 {
+  0% {
+    top: -100%;
+  }
+  50%,
+  100% {
+    top: 100%;
+  }
+}
+
+.create-box button span:nth-child(3) {
+  bottom: 0;
+  right: -100%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(270deg, transparent, var(--main-color));
+  animation: btn-anim3 1s linear infinite;
+  animation-delay: 0.5s;
+}
+
+@keyframes btn-anim3 {
+  0% {
+    right: -100%;
+  }
+  50%,
+  100% {
+    right: 100%;
+  }
+}
+
+.create-box button span:nth-child(4) {
+  bottom: -100%;
+  left: 0;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(360deg, transparent, var(--main-color));
+  animation: btn-anim4 1s linear infinite;
+  animation-delay: 0.75s;
+}
+
+@keyframes btn-anim4 {
+  0% {
+    bottom: -100%;
+  }
+  50%,
+  100% {
+    bottom: 100%;
+  }
+}
+
+.modal {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4));
+}
+.modal .content {
+  color: var(--text-color);
+  padding: 30px 20px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-direction: column;
+  border-radius: 8px;
+}
+.modal .content .close {
+  padding: 5px 10px;
+  border: none;
+  outline: none;
+  background-color: var(--nav-footer-color);
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: 500;
 }
