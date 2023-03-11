@@ -7,7 +7,7 @@ modalBtn.forEach((btn) => {
     document.body.style.overflow = "hidden";
   }
   btn.addEventListener("click", () => {
-    if (btn.dataset.modal == "already added") {
+    if (btn.dataset.modal == "close") {
       modal.style.display = "none";
     }
     if (btn.dataset.modal == "successfully added") {

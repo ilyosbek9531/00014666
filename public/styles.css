@@ -33,6 +33,7 @@ main {
   background: var(--nav-footer-color);
   position: sticky;
   top: 0;
+  z-index: 999;
 }
 
 .navbar__container {
@@ -370,4 +371,85 @@ select {
   cursor: pointer;
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+/* get students */
+.students {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.students .filter-tab {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+}
+.students .filter-tab button {
+  border: none;
+  outline: none;
+  padding: 5px 10px;
+  background: var(--nav-footer-color);
+  cursor: pointer;
+  opacity: 0.6;
+}
+.students .cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 20px;
+}
+.students .cards .card {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+  border-radius: 12px;
+  padding: 10px;
+  gap: 12px;
+  cursor: pointer;
+  position: relative;
+}
+.students .cards .card .student_img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+.students .cards .card h2 {
+  font-size: 1.5rem;
+}
+
+.students .cards .card h6 {
+  font-size: 1rem;
+}
+.students .cards .card .birth_gender {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.students .cards .card a {
+  border: none;
+  outline: none;
+  background: var(--nav-footer-color);
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.students .cards .card a:hover {
+  background: var(--hover-color);
+  transition: all 0.5s ease;
+}
+
+.students .cards .card .edit {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: var(--nav-footer-color);
+  border-radius: 0 12px 0 12px;
+  padding: 10px;
+}
+.students .cards .card .edit:hover {
+  background: var(--hover-color);
+  transition: all 0.5s ease;
 }
