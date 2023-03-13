@@ -2,4 +2,23 @@ extends index.pug
 
 block content
     main
-        .single-student #{studentById.student_name}
+        .single-student
+            .img 
+                img(src=studentById.image ? `/public/uploads/${studentById.image}` : 'https://www.pngkey.com/png/full/988-9886269_blank-person-facebook-no-profile.png', alt="single-student-image")
+            .content
+                .content_items
+                    h3 Student name : 
+                    .line
+                    h3 #{studentById.student_name}
+                .content_items
+                    h3 Student ID : 
+                    .line
+                    h3 #{studentById.student_id}
+                .content_items
+                    h3 Student Birth : 
+                    .line
+                    h3 #{studentById.student_birth}
+                .content_items
+                    h3 Student gender : 
+                    .line
+                    h3 #{studentById.student_gender}

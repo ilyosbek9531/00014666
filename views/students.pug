@@ -7,8 +7,8 @@ block content
                 button.gender(data-gender="all") All
                 button.gender(data-gender="male") male
                 button.gender(data-gender="female") female
-            .cards
-                if students.length
+            if students.length
+                .cards
                     each student in students 
                         .card(data-id=student.id)
                             img.student_img(src=student.image ? `/public/uploads/${student.image}` : 'https://www.pngkey.com/png/full/988-9886269_blank-person-facebook-no-profile.png', alt="student_image")
@@ -19,5 +19,7 @@ block content
                                 p #{student.student_gender}
                             a(href=`/${student.id}/delete` type="button") delete
                             a(href=`/addStudent?id=${student.id}` type="button").edit edit
-                else 
-                    div no students yet
+            else 
+                .null-data 
+                    img(src="/public/images/null-data.png", alt="null-data")
+                    h4 There is no students

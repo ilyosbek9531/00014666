@@ -465,3 +465,46 @@ select {
   background: var(--hover-color);
   transition: all 0.5s ease;
 }
+
+.null-data {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 15px;
+}
+.null-data h4 {
+  font-size: 1.2rem;
+}
+
+/* single student */
+.single-student {
+  display: flex;
+  gap: 50px;
+}
+
+.single-student .img {
+  width: 40%;
+  height: 400px;
+}
+.single-student .img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 70px;
+  object-fit: cover;
+}
+.single-student .content {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.single-student .content .content_items {
+  display: flex;
+  justify-content: space-between;
+}
+.single-student .content .content_items .line {
+  border-bottom: 1px dotted var(--text-color);
+  width: 50%;
+}

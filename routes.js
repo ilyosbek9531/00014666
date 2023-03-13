@@ -149,8 +149,16 @@ router.get("/:id/delete", (req, res) => {
     const allStudents = JSON.parse(data);
     const students = allStudents.filter((student) => student.id != id);
     const stringifiedStudents = JSON.stringify(students);
+    const singleStudent = allStudents.find((student) => student.id == id);
+
     fs.writeFile("./data/students.json", stringifiedStudents, (err) => {
       if (err) throw err;
+      if (singleStudent.image) {
+        fs.unlink(`public/uploads/${singleStudent?.image}`, (err) => {
+          if (err) throw err;
+          console.log("deleted successfully");
+        });
+      }
       res.render("students", { students, delete: true });
     });
   });
