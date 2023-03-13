@@ -4,12 +4,13 @@ block content
     main
         .students
             .filter-tab
-                button(data-gender="male") male
-                button(data-gender="female") female
+                button.gender(data-gender="all") All
+                button.gender(data-gender="male") male
+                button.gender(data-gender="female") female
             .cards
                 if students.length
                     each student in students 
-                        .card
+                        .card(data-id=student.id)
                             img.student_img(src=student.image ? `/public/uploads/${student.image}` : 'https://www.pngkey.com/png/full/988-9886269_blank-person-facebook-no-profile.png', alt="student_image")
                             h2 #{student.student_name}
                             h6 #{student.student_id}

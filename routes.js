@@ -117,11 +117,28 @@ router.get("/addStudent", (req, res) => {
 });
 
 router.get("/students", (req, res) => {
-  const gender = req.params.gender;
+  const gender = req.query.gender;
   fs.readFile("./data/students.json", (err, data) => {
     if (err) throw err;
     const students = JSON.parse(data);
-    res.render("students", { students });
+    if (gender == "male" || gender == "female") {
+      const filteredStudents = students.filter(
+        (student) => student.student_gender == gender
+      );
+      res.render("students", { students: filteredStudents });
+    } else {
+      res.render("students", { students });
+    }
+  });
+});
+
+router.get("/students/:id", (req, res) => {
+  const studentId = req.params.id;
+  fs.readFile("./data/students.json", (err, data) => {
+    if (err) throw err;
+    const students = JSON.parse(data);
+    const studentById = students.find((student) => student.id == studentId);
+    res.render("singleStudent", { studentById });
   });
 });
 

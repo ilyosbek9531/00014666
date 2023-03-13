@@ -10,7 +10,7 @@ html(lang="en")
                     span info
                 nav.nav
                     a(href="/") Home
-                    a(href="/students") Students
+                    a(href="/students?gender=all") Students
                     a(href="/addStudent") Add Student
 
         block content 
@@ -22,7 +22,7 @@ html(lang="en")
                 .nav 
                     h2 Navigations
                     a(href="/notes") Home
-                    a(href="/students") Students
+                    a(href="/students?gender=all") Students
                     a(href="/addStudent") Add Student
                 .contact 
                     h2 Contacts
@@ -30,3 +30,5 @@ html(lang="en")
                     a(href="#") +998 (72) 635-34-89
                     a(href="#") wiut.twitter.uz
         script(src="/public/frontend/modal.js") 
+        script(src="/public/frontend/students.js") 
+        script(src="/public/frontend/studentById.js") 
