@@ -30,4 +30,4 @@ yarn dev
 
 ### Web application repository on github
 
-[link to github repository]
+[link to github repository](https://github.com/ilyosbek9531/00014666.git)
