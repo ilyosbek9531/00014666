@@ -132,6 +132,14 @@ router.get("/students", (req, res) => {
   });
 });
 
+router.get("/api/v1/students", (req, res) => {
+  fs.readFile("./data/students.json", (err, data) => {
+    if (err) throw err;
+    const students = JSON.parse(data);
+    res.json(students);
+  });
+});
+
 router.get("/students/:id", (req, res) => {
   const studentId = req.params.id;
   fs.readFile("./data/students.json", (err, data) => {
