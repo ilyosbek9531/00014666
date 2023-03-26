@@ -1,1 +1,18 @@
-[{"id":"572ee0a0-3a01-4363-ac86-96c7f3420d7c","student_name":"dfk","student_id":"00009999","student_birth":"2023-03-09","image":"student_image-1678701537806.png","student_gender":"male"}]
+[
+    {
+        "id": "79b88c46-fedf-4a49-b562-59ca4b599061",
+        "student_name": "dfdf",
+        "student_id": "98797987",
+        "student_birth": "2023-03-18",
+        "image": "student_image-1678816765686.png",
+        "student_gender": "female"
+    },
+    {
+        "id": "2c57bd70-68c9-44a2-ac13-5ac72ebfbaf1",
+        "student_name": "fdsfkjhhdf",
+        "student_id": "98798798",
+        "student_birth": "2023-03-09",
+        "image": "student_image-1678816682975.png",
+        "student_gender": "female"
+    }
+]
