@@ -41,9 +41,9 @@ let upload = multer({
 // Add Student
 router.post("/addStudent", upload.single("student_image"), (req, res) => {
   const { student_name, student_id, student_birth, student_gender } = req.body;
-  const student_image = req?.file?.filename;
+  const student_image = req.file.filename;
   if (student_name && student_id.length == 8 && student_birth) {
-    if (Boolean(student_name?.match(/^[A-Za-z\s]*$/))) {
+    if (Boolean(student_name.match(/^[A-Za-z\s]*$/))) {
       fs.readFile("./data/students.json", (err, data) => {
         if (err) throw err;
         const students = JSON.parse(data);
@@ -51,12 +51,12 @@ router.post("/addStudent", upload.single("student_image"), (req, res) => {
           (student) => student.student_id == student_id
         );
 
-        if (singleStudentId?.id) {
+        if (singleStudentId.id) {
           const studentById = students.filter(
-            (student) => student.id != singleStudentId?.id
+            (student) => student.id != singleStudentId.id
           );
           studentById.unshift({
-            id: singleStudentId?.id,
+            id: singleStudentId.id,
             student_name,
             student_id,
             student_birth,
@@ -99,21 +99,24 @@ router.post("/addStudent", upload.single("student_image"), (req, res) => {
 
 router.get("/addStudent", (req, res) => {
   const singleStudentId = req.query.id;
-  fs.readFile("./data/students.json", (err, data) => {
-    if (err) throw err;
-    const students = JSON.parse(data);
-    const singleStudent = students.find(
-      (student) => student.id == singleStudentId
-    );
-
-    res.render("addStudent", {
-      student_name: singleStudent?.student_name,
-      student_id: singleStudent?.student_id,
-      student_image: singleStudent?.image,
-      student_birth: singleStudent?.student_birth,
-      student_gender: singleStudent?.student_gender,
+  if (singleStudentId) {
+    fs.readFile("./data/students.json", (err, data) => {
+      if (err) throw err;
+      const students = JSON.parse(data);
+      const singleStudent = students.find(
+        (student) => student.id == singleStudentId
+      );
+      res.render("addStudent", {
+        student_name: singleStudent.student_name,
+        student_id: singleStudent.student_id,
+        student_image: singleStudent.image,
+        student_birth: singleStudent.student_birth,
+        student_gender: singleStudent.student_gender,
+      });
     });
-  });
+  } else {
+    res.render("addStudent");
+  }
 });
 
 router.get("/students", (req, res) => {
@@ -162,7 +165,7 @@ router.get("/:id/delete", (req, res) => {
     fs.writeFile("./data/students.json", stringifiedStudents, (err) => {
       if (err) throw err;
       if (singleStudent.image) {
-        fs.unlink(`public/uploads/${singleStudent?.image}`, (err) => {
+        fs.unlink(`public/uploads/${singleStudent.image}`, (err) => {
           if (err) throw err;
           console.log("deleted successfully");
         });
