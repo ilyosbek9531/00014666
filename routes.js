@@ -41,7 +41,7 @@ let upload = multer({
 // Add Student
 router.post("/addStudent", upload.single("student_image"), (req, res) => {
   const { student_name, student_id, student_birth, student_gender } = req.body;
-  const student_image = req.file.filename;
+  const student_image = req?.file?.filename;
   if (student_name && student_id.length == 8 && student_birth) {
     if (Boolean(student_name.match(/^[A-Za-z\s]*$/))) {
       fs.readFile("./data/students.json", (err, data) => {
